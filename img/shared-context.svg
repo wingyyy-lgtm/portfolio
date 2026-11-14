@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" fill="none">
+  <rect x="1" y="1" width="638" height="438" rx="32" fill="#F7F9FF" stroke="#E3E9F5"/>
+  <path d="M190 126C232 126 239 210 278 210M450 126C408 126 401 210 362 210M190 315C232 315 239 230 278 230M450 315C408 315 401 230 362 230" stroke="#AFC0F4" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <rect x="48" y="82" width="176" height="88" rx="20" fill="white" stroke="#DBE4F4" stroke-width="2"/>
+  <circle cx="77" cy="111" r="9" fill="#365CF5"/><text x="96" y="117" fill="#617087" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1">MODEL A</text>
+  <text x="69" y="148" fill="#172337" font-family="Arial,sans-serif" font-size="20" font-weight="700">DeepSeek</text>
+  <rect x="416" y="82" width="176" height="88" rx="20" fill="white" stroke="#DBE4F4" stroke-width="2"/>
+  <circle cx="445" cy="111" r="9" fill="#8B67E8"/><text x="464" y="117" fill="#617087" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1">MODEL B</text>
+  <text x="437" y="148" fill="#172337" font-family="Arial,sans-serif" font-size="20" font-weight="700">Qwen</text>
+  <rect x="208" y="178" width="224" height="86" rx="24" fill="#EAF9F5" stroke="#AEE8D9" stroke-width="2"/>
+  <rect x="231" y="203" width="35" height="35" rx="11" fill="#35C8A3"/><path d="M240 220L247 227L258 214" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="280" y="214" fill="#172337" font-family="Arial,sans-serif" font-size="16" font-weight="700">共享事实状态</text>
+  <text x="280" y="237" fill="#617087" font-family="Arial,sans-serif" font-size="12">同一版本 · 独立判断</text>
+  <rect x="48" y="270" width="176" height="88" rx="20" fill="white" stroke="#DBE4F4" stroke-width="2"/>
+  <circle cx="77" cy="299" r="9" fill="#F2A65A"/><text x="96" y="305" fill="#617087" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1">USER INPUT</text>
+  <text x="69" y="336" fill="#172337" font-family="Arial,sans-serif" font-size="18" font-weight="700">补充一次事实</text>
+  <rect x="416" y="270" width="176" height="88" rx="20" fill="white" stroke="#DBE4F4" stroke-width="2"/>
+  <circle cx="445" cy="299" r="9" fill="#35C8A3"/><text x="464" y="305" fill="#617087" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1">NEW ROUND</text>
+  <text x="437" y="336" fill="#172337" font-family="Arial,sans-serif" font-size="18" font-weight="700">同步更新观点</text>
+  <text x="320" y="405" text-anchor="middle" fill="#8290A5" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="2">ONE CONTEXT · TWO VIEWS</text>
+</svg>

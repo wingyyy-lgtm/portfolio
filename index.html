@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tian · 作品集</title>
+<meta name="description" content="四个 AI 相关的小项目：AI 购物商品审计、英语学习 App、双模型讨论原型、手势识别验证。每个都写清楚了做到了什么、没做到什么。">
+<style>
+:root{--bg:#0f1114;--card:#171a1f;--line:#2a2f37;--ink:#eceae4;--sub:#a3a8b0;--accent:#7cc4dd;--ok:#8fd19e;--warn:#e6c07b;--cream:#f3ebdd;--cream-ink:#1f1a12}
+@media (prefers-color-scheme:light){:root{--bg:#f6f4ef;--card:#fff;--line:#dedad0;--ink:#1d1f23;--sub:#5d626b;--accent:#16708f;--ok:#1d7a3c;--warn:#8a5a00;--cream:#1d1f23;--cream-ink:#f6f4ef}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{padding:56px 0 28px}
+h1{font-size:clamp(30px,6vw,44px);line-height:1.2;margin:0 0 12px;letter-spacing:-.01em}
+.lead{font-size:18px;color:var(--sub);margin:0 0 20px;max-width:640px}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:10px 18px;border-radius:999px;background:var(--cream);color:var(--cream-ink);text-decoration:none;font-weight:600;font-size:15px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+nav.toc{display:flex;gap:18px;flex-wrap:wrap;margin:26px 0 0;font-size:14px}
+nav.toc a{color:var(--sub);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+section{padding:36px 0;border-top:1px solid var(--line)}
+h2{font-size:26px;margin:0 0 6px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
+.tag{font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
+.tag.ok{color:var(--ok);border-color:currentColor}
+.tag.warn{color:var(--warn);border-color:currentColor}
+p{margin:0 0 14px}
+h3{font-size:16px;margin:22px 0 8px;color:var(--accent)}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:4px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.cols{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.box h3{margin-top:0}
+.shots{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 14px;margin:6px -20px 14px;padding-left:20px;padding-right:20px;scroll-snap-type:x proximity}
+.shots figure{margin:0;flex:0 0 auto;width:220px;scroll-snap-align:start}
+.shots img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);display:block;background:var(--card)}
+.shots figcaption{font-size:13px;color:var(--sub);margin-top:6px;line-height:1.5}
+.note{font-size:14px;color:var(--sub)}
+code{font:13px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{padding:30px 0 60px;border-top:1px solid var(--line);color:var(--sub);font-size:14px}
+a{color:var(--accent)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Tian · 作品集</h1>
+  <p class="lead">我在找 AI 相关的工作。这里放四个我自己做的项目。分工都一样：我定需求、AI 实现、我测试和取舍。每个项目我都写了：做到了什么、没做到什么、下一步是什么。</p>
+  <div class="links">
+    <a class="btn" href="#shopping">看作品</a>
+  </div>
+  <nav class="toc" aria-label="目录"><a href="#shopping">AI 购物商品审计</a><a href="#english">英语 App</a><a href="#council">UY 共享背景板</a><a href="#gesture">手势验证</a></nav>
+</header>
+
+<section id="shopping">
+  <h2>AI 购物商品审计：AI 有没有说对商家的商品</h2>
+  <div class="meta"><span class="tag warn">早期项目，商业效果未验证</span><span class="tag">千问 / 豆包</span><span class="tag">评测</span><span class="tag">需求设计</span></div>
+  <p>越来越多消费者直接问 AI“买哪款、参数怎么样”。商家并不知道 AI 能不能找到自己的商品、有没有理解真实卖点，会不会把不确定的说法讲成确定参数。我做的是：先把商品的真实情况核实清楚，再看 AI 怎么回答，找出偏差出在哪一层。目标客户是电商商家，不是给消费者做购物建议。</p>
+  <div class="cols">
+    <div class="box"><h3>我负责什么</h3><ul>
+      <li>定方向：目标客户、核心问题和服务路径。</li>
+      <li>联系电商运营、客服和商家，了解商品资料怎么维护、客服知识库怎么用。</li>
+      <li>核对商品页、运营说法、客服反馈和买家评价，区分实测数据、经验判断和宣传话术。</li>
+      <li>设计消费者购买问题，测试千问、豆包，逐句记录识别错误、遗漏、参数偏差和无依据补充。半自动测试脚本：我定需求、AI 实现、我测试和取舍。</li>
+    </ul></div>
+    <div class="box"><h3>方法</h3><ul>
+      <li>证据分 6 级：监管数据 &gt; 实物包装 &gt; 品牌/官方客服 &gt; 旗舰店页面 &gt; 第三方页面 &gt; AI 回答。低等级不能覆盖高等级，有冲突就记录冲突。</li>
+      <li>五步流程：人工核实真实信息 → 人工走一遍消费者路径 → 检查 AI 能否找到商品 → 脚本批量测试 → 逐句对照打标签（正确 / 错误 / 无依据推断 / 证据被抬高）。</li>
+      <li>区分三种入口：淘宝内置千问、手机 App、开发者 API。脚本只能测 API，结果不能代表消费者实际看到的回答，每条记录都标明入口。</li>
+    </ul></div>
+  </div>
+  <div class="box"><h3>方法验证：4 种可复现的错误模式</h3><ul>
+    <li>在真实商品上归纳出 4 种可复现的错误：信息空白时直接编具体事实（如编出标准编号）；拿编出来的信息给“放心购买”这类结论；给了真实信息后核心判断变准，但周边细节继续扩张；把“图片里的信息”说成“已实测核对”，悄悄抬高证据等级。</li>
+    <li>前后做过 4 个品类的案例（纸品、护肤、金属家具、小家电，其中 1 个暂停），同一组规律在纸品和金属家具两个完全不同的品类上复现。</li>
+  </ul></div>
+  <div class="cols">
+    <div class="box"><h3>做到了什么</h3><ul>
+      <li>建立了商品真实信息核验方法和五步测试流程。</li>
+      <li>完成真实商品的千问、豆包问答测试，半自动测试脚本（批量发送与存档）已跑通。</li>
+      <li>找到“经验说法被 AI 强化成确定参数”的具体链路。</li>
+      <li>发现“让 AI 自己联网找真相”行不通：小家电案例中检索被营销软文污染，AI 给出和实物铭牌矛盾的参数，于是主动暂停这条路。</li>
+    </ul></div>
+    <div class="box"><h3>没做到 / 不能证明</h3><ul>
+      <li><strong>还没有商家授权修改真实商品信息，“改前改后”的实验没跑通。</strong></li>
+      <li>没证明优化后 AI 推荐出现率会稳定提高，也没证明会影响购买决定。</li>
+      <li>没有把推荐率、销量或 GMV 提升写成成果，这些是下一步要验证的。</li>
+    </ul></div>
+  </div>
+  <p>下一步：找有真实商品资料和运营负责人的商家做首批轻合作，选主推商品，建消费者常见问题清单，检测、优化有依据的信息，再复测。</p>
+</section>
+
+<section id="english">
+  <h2>不断交流：英语学习 App</h2>
+  <div class="meta"><span class="tag ok">本地运行、每天自用</span><span class="tag">需求设计</span><span class="tag">AI 出题与批改</span></div>
+  <p>我英语基础弱，常用 AI 电话练口语。这个 App 把电话里学到的句子存起来，按熟练程度排期复习，再让 AI 老师把句子放进真实场景里练。</p>
+
+  <div class="shots" role="group" aria-label="App 截图">
+    <figure><img src="img/home.jpg" alt="首页：素材总数、今天待复习、每日打卡" loading="lazy"><figcaption>首页：待复习数量和每日打卡（做完至少 10 题才算打卡）</figcaption></figure>
+    <figure><img src="img/library.jpg" alt="素材库按情景折叠" loading="lazy"><figcaption>素材库：句子按情景分组、折叠，可自动分情景</figcaption></figure>
+    <figure><img src="img/scene.jpg" alt="场景对话学习页" loading="lazy"><figcaption>场景：一段完整对话，可遮住英文或中文自测</figcaption></figure>
+    <figure><img src="img/roleplay.jpg" alt="角色扮演：虚构人物说一句，你回一句" loading="lazy"><figcaption>角色扮演：对方是虚构人物。卡住时要先答对一个小问题才能看提示</figcaption></figure>
+    <figure><img src="img/scenegen.jpg" alt="场景灵感按钮" loading="lazy"><figcaption>场景灵感：30 个日常场景，避免 AI 总是生成咖啡厅</figcaption></figure>
+  </div>
+  <p class="note">截图用的是示例数据，不是我的真实学习记录。</p>
+
+  <div class="cols">
+    <div class="box"><h3>做到了什么</h3><ul>
+      <li>复习排程：新、学习中、已掌握三个阶段，到期的句子优先出现。</li>
+      <li>AI 老师：从通话记录里挑句子，出题、批改、补全场景；角色扮演不设标准答案，只判断回复算不算正常交流。</li>
+      <li>本地运行，我每天自用。</li>
+      <li>场景库：30 个日常场景（问路、看医生、租房、公交站搭话等）的常用说法，生成场景时随机抽一个，并规定对话里要有肯定、拒绝和听不懂时的救场句。</li>
+    </ul></div>
+    <div class="box"><h3>没做到 / 不能证明</h3><ul>
+      <li>没有证明它比别的 App 更有效，只有我自己的使用感受。</li>
+      <li>AI 批改的质量没有做过系统评测。</li>
+      <li>场景里有一部分常用说法是我整理时推断的，没有母语者审过。</li>
+      <li>这个 App 是本地运行的，没法放到公网上让大家直接用，所以这里只放截图。</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="council">
+  <h2>UY 共享背景板：双模型讨论原型</h2>
+  <div class="meta"><span class="tag warn">原型，不是成品</span><span class="tag">需求设计</span><span class="tag">AI 测试</span><span class="tag">DeepSeek + Qwen</span></div>
+  <p>我想验证的是：做项目决策时，让两个模型读同一份事实、各自判断，会不会比只问一个更有用。这个原型把它做成了流程：我只补充一次信息，两个模型读同一份最新的事实状态，各自更新判断，每一轮都保留下来方便回看。</p>
+  <p><img src="img/shared-context.svg" alt="同一份事实状态同时交给 DeepSeek 和 Qwen" style="max-width:320px;width:100%;height:auto"></p>
+  <div class="box"><h3>为什么做</h3><ul>
+    <li>每换一个 AI，都要把项目情况和限制重新讲一遍。</li>
+    <li>补充或纠正信息后，旧结论还会继续影响后面的分析。</li>
+    <li>只看最新答案，看不出建议为什么变了，也没法回看之前的讨论。</li>
+  </ul></div>
+  <div class="cols">
+    <div class="box"><h3>我负责什么</h3><ul>
+      <li>定问题：多个模型能不能共享最新背景、持续协作。</li>
+      <li>设计共享事实状态和多轮讨论的验收场景。</li>
+      <li>用浏览器、接口日志和状态快照检查真实流程。</li>
+      <li>控制范围，先跑通双模型和历史保存。我定需求和验收场景、AI 实现、我测试和取舍。</li>
+    </ul></div>
+    <div class="box"><h3>关键取舍</h3><ul>
+      <li>从一个模型扮演多个角色，改成两个真实模型独立分析，互不读取本轮观点。</li>
+      <li>先关掉联网，集中验证共享背景和多轮流程。</li>
+      <li>把“接口返回成功”“事实状态正确”“回答可信”分开验收。</li>
+      <li>保留每个案例的历史，刷新后能恢复、能按轮次回看。</li>
+    </ul></div>
+  </div>
+  <div class="cols">
+    <div class="box"><h3>做到了什么</h3><ul>
+      <li>两个模型共享同一份事实状态，多轮更新。</li>
+      <li>待确认的问题有单独的生命周期整理。</li>
+      <li>流式输出、30 秒无响应自动中止、一侧失败不影响另一侧。</li>
+      <li>用真实模型跑通过一组两轮流程：在“5000 元开发 AI 工具”的案例里，第二轮补充演示范围、工时和付款条件后，事实状态更新到 v2，两个模型收到相同状态并各自更新建议，刷新后 v1、v2 都还能看。</li>
+    </ul></div>
+    <div class="box"><h3>没做到 / 不能证明</h3><ul>
+      <li><strong>尚未证明双模型比单模型的决策质量更高。</strong></li>
+      <li>真实测试里看到过 Qwen 把工时来源归错，还做过没有依据的市场比较，所以不能保证输出都可靠。</li>
+      <li>当前是演示模式：不联网搜索，也不生成来源引用，模型输出可能有未核实内容。</li>
+      <li>没有接入商家选品、商品或广告数据，没有多业务子 Agent 调度。</li>
+    </ul></div>
+  </div>
+  <p class="note">项目仓库还在整理，整理好后再放链接。</p>
+</section>
+
+<section id="gesture">
+  <h2>手势验证：先写标准，再看数据</h2>
+  <div class="meta"><span class="tag warn">验证中，未完成</span><span class="tag">AI 测试</span><span class="tag">评测</span><span class="tag">手部关键点</span></div>
+  <p>目标是用摄像头区分握拳后是“放下”还是“甩出”，并且不在我正常用电脑时乱触发。这个项目现在做得最多的不是功能，而是怎么证明它不乱触发。</p>
+  <h3>我怎么做验证</h3>
+  <ul>
+    <li><strong>预注册：</strong>每条规则、通过标准、有效性条件，都在看新数据之前写进文档，并写明“不得因本轮结果修改参数”。</li>
+    <li><strong>如实记录事后调整：</strong>有一次我看到数据暴露量太低，把有效性条件从“有手帧占比”改成“累计有手分钟数”。文档里写明这是看过数据之后改的，旧数据不计入。</li>
+    <li><strong>盲测：</strong>用没参与定参数的新录制来检验，而不是用调参的那批。</li>
+  </ul>
+  <h3>目前能说的数字</h3>
+  <ul>
+    <li><strong>放下 / 甩出两批独立测试：</strong>先锁定判定规则和通过线再采集，两批各 40 次。run16：放下误判 2/20，甩出命中 19/20；run17：放下误判 0/20，甩出命中 20/20。两批都达到我定的通过线。</li>
+    <li>有一条“时长门”规则：握拳持续 0.5 到 3.0 秒才输出。在已标注数据上，真的甩出动作保留了 83.5%（109 次里保留 91 次），其余被挡掉。</li>
+    <li>一段 44 分钟的基线录制里（我自述没有故意做手势），没加规则前触发约 20 次/小时；套上时长门后约 5.5 次/小时。<strong>这批数据当时不是盲测</strong>，只能当参考。</li>
+    <li>我定的通过线是“不做手势时，误触发不超过 2 次/小时”。最新一轮（11/8–11/9，合计 147 分钟）加时长门后误触发约 2.9 次/小时，没达到这条线，记为未达标，所以我不说它“能用”。</li>
+  </ul>
+  <p class="note">演示视频待补。测试数据目前在我自己的电脑上，没有放到公网。</p>
+</section>
+
+<footer>
+  <p>这个页面是静态网页，没有统计和追踪代码。联系方式见简历。</p>
+</footer>
+</div>
+</body>
+</html>

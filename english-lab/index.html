@@ -33,16 +33,16 @@
 .voice-controls button{flex:1;min-width:120px;background:#fff;color:#184683;border:1px solid #8ea8d1;border-radius:10px;padding:12px;font-weight:650}
 .voice-controls audio{width:100%;margin-top:8px}
 .model-status{font-size:13px;min-height:23px;margin-top:7px;color:#445a77}
-</style></head><body><main><div style="font-size:12px;letter-spacing:.14em;font-weight:850;color:#5d718f">ENGLISH LAB · LISTENING</div><h1>真人英语 · 随机测评</h1><p class="sub">真人原声听辨、听写，以及陌生词拼读和已学字母音复习。每次随机换题；原有10题保留在右侧。</p><div id="savedResult" style="display:none"></div>
-<div class="tabs" aria-label="学习模式"><button id="adTab" type="button" class="active">随机综合测评</button><button id="oldTab" type="button">原有 10 题</button></div>
+</style></head><body><main><div style="font-size:12px;letter-spacing:.14em;font-weight:850;color:#5d718f">ENGLISH LAB · LISTENING</div><h1>真人英语 · 随机测评</h1><p class="sub">真人原声听辨、听写，以及陌生词拼读和已学字母音复习。每轮从26个真人原声基础词中轮换抽取，并避开上一轮；旧版固定10题仍保留供对照。</p><div id="savedResult" style="display:none"></div>
+<div class="tabs" aria-label="学习模式"><button id="adTab" type="button" class="active">随机综合测评</button><button id="oldTab" type="button">旧版固定10题</button></div>
 <section class="card" id="adaptive">
-<div class="adaptive-head"><strong>随机综合测评 · 真人示范版</strong><span class="tiny">16题 / 每轮变化</span></div>
-<p class="muted" style="font-size:13px;line-height:1.75">5题真人听词选择、3题真人听写、5题陌生词先读后听真人示范、3题字母音配真人例词。每轮随机抽题和打乱选项；发音部分为对照练习，不自动判分。</p>
+<div class="adaptive-head"><strong>随机综合测评 · 真人示范版</strong><span class="tiny">16题 / 避重随机</span></div>
+<p class="muted" style="font-size:13px;line-height:1.75">5题真人听词选择、3题真人听写、5题陌生词先读后听真人示范、3题字母音配真人例词。从26个有真人录音的基础词中抽题，连续轮次尽量不重复；选项随机排序。发音部分为对照练习，不自动判分。</p>
 <div id="adIntro"><div class="sound-box"><strong>怎样才算真正掌握？</strong><br>听辨和听写自动判分；先自己读，再打开提示听真人示范，可用麦克风录音回放自己对照。听到范例不等于系统验证发音正确；只有听词和听写自动计分。</div><button class="rand-btn" id="adStart" style="width:100%">开始一轮随机测试</button></div>
 <div id="adQuestion"><div class="tiny" id="adCount"></div><div class="meter"><div id="adProgress"></div></div><div class="question-tags" id="adMode"></div><h2 id="adPrompt" style="font-size:19px;margin-bottom:12px"></h2><div id="adContent"></div><audio id="adAudio" controls playsinline preload="none"></audio><div id="adMessage" role="status"></div><div id="adExplain"></div><button id="adNext" type="button" class="rand-btn" disabled style="width:100%;margin-top:12px">下一题</button></div>
 <div id="adResult"><h2 style="margin:0">本轮测评完成</h2><div class="report-total" id="adScore"></div><p class="tiny" id="adSummary"></p><div class="row-controls"><button id="adCopy" class="rand-btn" type="button">复制详细报告</button><button id="adAgain" class="rand-btn secondary" type="button">换一组新题</button></div><p id="adCopyStatus" class="tiny"></p><div class="report-list" id="adDetails"></div></div>
 <details style="margin-top:22px"><summary style="font-weight:700;cursor:pointer">查看随机测评历史成绩</summary><div id="adHistory" class="tiny"></div></details>
-<p class="tiny" style="margin-top:15px">学习记录仅保存到当前浏览器，清除网站数据或换设备可能丢失。请使用“复制详细报告”发给老师，由老师写入 Notion。真人录音仍依赖 Wikimedia 网络资源，打不开的题可以标记“音频故障”跳过。</p>
+<p class="tiny" style="margin-top:15px">学习记录仅保存到当前浏览器，清除网站数据或换设备可能丢失。请使用“复制详细报告”发给老师，由老师写入 Notion。当前基础真人原声题库为26个词，词库用完后会开始新一轮随机循环；仍依赖 Wikimedia 网络资源，打不开可以标记音频故障跳过。</p>
 </section>
 <section class="card" id="lesson"><div id="meta">第 1 / 10 题</div><div id="progressbar"><div id="progress"></div></div><button id="listen" class="listen" type="button"><span style="font-size:27px">🔊</span> 点击听真人发音</button><audio id="audio" preload="none" controls playsinline></audio><div id="status" aria-live="polite">点击蓝色喇叭，或下方系统播放器。</div><div style="font-weight:750;margin-top:14px">你听到了哪个单词？</div><div id="options"></div><div id="feedback" aria-live="polite"><span class="muted">听完再答题；选错会立即解释。</span></div><button id="next" type="button" disabled>下一题 →</button></section><section class="card" id="done"><h2>本组练习结束</h2><div id="score"></div><p id="summary"></p>
 <div id="details"><h3 style="margin:16px 0 6px">本次逐题选择记录</h3><div id="reportRows"></div></div>
@@ -184,23 +184,78 @@ const phoneme={a:'/æ/',b:'/b/',c:'/k/',d:'/d/',e:'/ɛ/',f:'/f/',g:'/ɡ/',h:'/h/
 // Only real US-English recordings with verified Wikimedia Commons file pages. Audio is whole-word model, not isolated phoneme.
 const realFiles={"sit": "En-us-sit.ogg", "pen": "En-us-pen.ogg", "bed": "En-us-bed.ogg", "sad": "En-us-sad.ogg", "dog": "En-us-dog.ogg", "pig": "En-us-pig.ogg", "man": "En-us-man.ogg", "red": "En-us-red.ogg", "net": "En-us-net.ogg", "cat": "En-us-cat.ogg", "map": "En-us-map.ogg", "hat": "En-us-hat.ogg", "kid": "En-us-kid.ogg", "pan": "En-us-pan.ogg", "yes": "En-us-yes.ogg", "top": "En-us-top.ogg", "tip": "En-us-tip.ogg", "sun": "En-us-Sun.ogg", "queen": "En-us-queen.ogg", "web": "En-us-web.ogg", "fun": "En-us-fun.ogg", "vast": "En-us-vast.ogg", "word": "En-us-word.ogg", "jam": "En-us-jam.ogg", "go": "En-us-go.ogg", "lips": "En-us-lips.ogg", "water": "En-us-water.ogg"};
 const realMp3Urls={"sit":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/40/En-us-sit.ogg/En-us-sit.ogg.mp3","pen":"https://upload.wikimedia.org/wikipedia/commons/transcoded/8/86/En-us-pen.ogg/En-us-pen.ogg.mp3","bed":"https://upload.wikimedia.org/wikipedia/commons/transcoded/1/14/En-us-bed.ogg/En-us-bed.ogg.mp3","sad":"https://upload.wikimedia.org/wikipedia/commons/transcoded/5/51/En-us-sad.ogg/En-us-sad.ogg.mp3","dog":"https://upload.wikimedia.org/wikipedia/commons/transcoded/0/06/En-us-dog.ogg/En-us-dog.ogg.mp3","pig":"https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e4/En-us-pig.ogg/En-us-pig.ogg.mp3","man":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/45/En-us-man.ogg/En-us-man.ogg.mp3","red":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c9/En-us-red.ogg/En-us-red.ogg.mp3","net":"https://upload.wikimedia.org/wikipedia/commons/transcoded/2/28/En-us-net.ogg/En-us-net.ogg.mp3","cat":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/46/En-us-cat.ogg/En-us-cat.ogg.mp3","map":"https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e0/En-us-map.ogg/En-us-map.ogg.mp3","hat":"https://upload.wikimedia.org/wikipedia/commons/transcoded/8/8b/En-us-hat.ogg/En-us-hat.ogg.mp3","kid":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c7/En-us-kid.ogg/En-us-kid.ogg.mp3","pan":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cf/En-us-pan.ogg/En-us-pan.ogg.mp3","yes":"https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b1/En-us-yes.ogg/En-us-yes.ogg.mp3","top":"https://upload.wikimedia.org/wikipedia/commons/transcoded/3/32/En-us-top.ogg/En-us-top.ogg.mp3","tip":"https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f8/En-us-tip.ogg/En-us-tip.ogg.mp3","sun":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/4b/En-us-Sun.ogg/En-us-Sun.ogg.mp3","queen":"https://upload.wikimedia.org/wikipedia/commons/transcoded/d/d0/En-us-queen.ogg/En-us-queen.ogg.mp3","web":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c6/En-us-web.ogg/En-us-web.ogg.mp3","fun":"https://upload.wikimedia.org/wikipedia/commons/transcoded/f/fd/En-us-fun.ogg/En-us-fun.ogg.mp3","vast":"https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e8/En-us-vast.ogg/En-us-vast.ogg.mp3","word":"https://upload.wikimedia.org/wikipedia/commons/transcoded/b/bf/En-us-word.ogg/En-us-word.ogg.mp3","jam":"https://upload.wikimedia.org/wikipedia/commons/transcoded/d/dc/En-us-jam.ogg/En-us-jam.ogg.mp3","go":"https://upload.wikimedia.org/wikipedia/commons/transcoded/0/0a/En-us-go.ogg/En-us-go.ogg.mp3","lips":"https://upload.wikimedia.org/wikipedia/commons/transcoded/3/3f/En-us-lips.ogg/En-us-lips.ogg.mp3","water":"https://upload.wikimedia.org/wikipedia/commons/transcoded/b/bd/En-us-water.ogg/En-us-water.ogg.mp3"};
+realFiles["pin"]="En-us-pin.ogg";
+realMp3Urls["pin"]="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cc/En-us-pin.ogg/En-us-pin.ogg.mp3";
+realFiles["hit"]="En-us-hit.ogg";
+realMp3Urls["hit"]="https://upload.wikimedia.org/wikipedia/commons/transcoded/7/79/En-us-hit.ogg/En-us-hit.ogg.mp3";
+realFiles["big"]="En-us-big.ogg";
+realMp3Urls["big"]="https://upload.wikimedia.org/wikipedia/commons/transcoded/9/96/En-us-big.ogg/En-us-big.ogg.mp3";
+realFiles["mat"]="En-us-mat.ogg";
+realMp3Urls["mat"]="https://upload.wikimedia.org/wikipedia/commons/transcoded/8/8b/En-us-mat.ogg/En-us-mat.ogg.mp3";
+realFiles["bag"]="En-us-bag.ogg";
+realMp3Urls["bag"]="https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e1/En-us-bag.ogg/En-us-bag.ogg.mp3";
+realFiles["mad"]="En-us-mad.ogg";
+realMp3Urls["mad"]="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b6/En-us-mad.ogg/En-us-mad.ogg.mp3";
 const letterExamples={"S": "sun", "M": "map", "A": "map", "T": "top", "P": "pig", "I": "sit", "N": "net", "O": "dog", "D": "dog", "G": "go", "B": "bed", "F": "fun", "H": "hat", "J": "jam", "C": "cat", "L": "lips", "R": "red", "E": "pen", "K": "kid", "V": "vast", "W": "web", "Y": "yes", "Q": "queen"};
-const fresh=["map", "hat", "kid", "pan", "yes", "top", "tip", "sun", "web", "jam", "sit", "pen", "bed", "sad", "dog", "pig", "man", "red", "net", "cat"];
+const fresh=["sit", "pen", "bed", "sad", "dog", "pig", "man", "red", "net", "cat", "map", "hat", "kid", "pan", "yes", "top", "tip", "web", "jam", "lips", "pin", "hit", "big", "mat", "bag", "mad"];
 const shuffle=a=>{let b=a.slice();for(let j=b.length-1;j>0;j--){let k=Math.floor(Math.random()*(j+1));[b[j],b[k]]=[b[k],b[j]]}return b};
 const safeRead=(key,def)=>{try{let r=localStorage.getItem(key);return r?JSON.parse(r):def}catch(e){return def}};
 const safeSave=(key,v)=>{try{localStorage.setItem(key,JSON.stringify(v));return true}catch(e){return false}};
 const countMap=key=>{let obj=safeRead(key,{});return obj&&typeof obj==='object'&&!Array.isArray(obj)?obj:{}};
 const pickLeast=(arr,n,key)=>{let counts=countMap(key);return arr.map(x=>({x,rank:Number(counts[x]||0)*50+Math.random()*25})).sort((a,b)=>a.rank-b.rank).slice(0,n).map(a=>a.x)};
+// Verified US pronunciation sources; core random pool excludes advanced vowel patterns until introduced in lessons.
+const AUDIO_POOL=fresh.map(word=>{
+ const classic=typeof questions!=='undefined'?questions.find(x=>x.answer===word):null;
+ return {answer:word,src:classic?classic.src:realMp3Urls[word],original:classic?classic.original:'https://commons.wikimedia.org/wiki/File:'+realFiles[word],opts:classic?classic.opts:null,tip:classic?classic.tip:'听清整个单词与词尾声音；不要靠固定题目的选项位置猜答案。'};
+}).filter(x=>!!x.src);
+const AUDIO_BAG='english-lab-audio-bag-v3';
+const LAST_AUDIO='english-lab-last-audio-v3';
+const LAST_DECODE='english-lab-last-decode-v3';
+// Shuffle-bag sampling: no word reappears until all available words have had their turn;
+// a refilled bag excludes the immediately previous session wherever the pool permits.
+function chooseAudio(n){
+ const all=AUDIO_POOL.map(x=>x.answer),valid=new Set(all);let bag=safeRead(AUDIO_BAG,[]);
+ if(!Array.isArray(bag))bag=[];bag=bag.filter((x,i)=>valid.has(x)&&bag.indexOf(x)===i);
+ let previous=safeRead(LAST_AUDIO,[]);if(!Array.isArray(previous))previous=[];
+ let selected=[];
+ while(selected.length<n){
+  if(!bag.length){
+    let available=all.filter(x=>!selected.includes(x)&&!previous.includes(x));
+    if(!available.length)available=all.filter(x=>!selected.includes(x));
+    bag=shuffle(available);
+  }
+  let next=bag.shift();if(next&&!selected.includes(next))selected.push(next);
+ }
+ safeSave(AUDIO_BAG,bag);safeSave(LAST_AUDIO,selected);
+ return selected.map(word=>AUDIO_POOL.find(item=>item.answer===word));
+}
+const DISTRACTORS='sat sit set seat pen pin pan bin bed bid bad sad sap dog dig dug pig big pick man men mat mad red rid rod net not nap cat cap cab map mop hat hit hot kid kit lid pat yes yet top tap tip tin web wet wed jam job jog lips lip bag bog bag big mat met mad med'.split(' ');
+function oneLetterDifference(a,b){if(a.length!==b.length)return false;let c=0;for(let i=0;i<a.length;i++)if(a[i]!==b[i])c++;return c===1;}
+function answerOptions(q){
+ let opts=(q.opts||[]).filter(x=>x!==q.answer);
+ let close=DISTRACTORS.filter((w,i)=>w!==q.answer&&DISTRACTORS.indexOf(w)===i&&oneLetterDifference(w,q.answer));
+ for(let w of shuffle(close))if(!opts.includes(w)&&opts.length<2)opts.push(w);
+ for(let w of shuffle(DISTRACTORS))if(!opts.includes(w)&&w!==q.answer&&opts.length<2)opts.push(w);
+ return shuffle([q.answer,...opts.slice(0,2)]);
+}
+function chooseDecode(audioWords,n){
+ let previous=safeRead(LAST_DECODE,[]);if(!Array.isArray(previous))previous=[];
+ const avail=fresh.filter(x=>!audioWords.includes(x)&&!previous.includes(x));
+ const fallback=fresh.filter(x=>!audioWords.includes(x));
+ const pool=avail.length>=n?avail:fallback;
+ const selected=pickLeast(pool,n,WORDS);
+ safeSave(LAST_DECODE,selected);return selected;
+}
+
 let tasks=[],answers=[],idx=0,answered=false,listens=0,last=null;
 const taskTypes={listen:'真人听力 · 选择',spell:'真人听写 · 输入',decode:'陌生词 · 先读后听真人示范',letter:'字母音 · 真人例词对照'};
 function start(){
- const voice=typeof questions!=='undefined'?questions:[];
- if(voice.length<8){$('adMessage').textContent='未找到原有真人发音题库，无法开始';return}
- // Randomly select eight distinct available real-audio prompts; distractors shuffled each session.
- const aud=shuffle(voice).slice(0,8);
- const heard=shuffle(aud.slice(0,5).map(q=>({kind:'listen',key:q.answer,src:q.src,original:q.original,opts:shuffle(q.opts),tip:q.tip})));
+ if(AUDIO_POOL.length<13){$('adMessage').textContent='真人词库不足，无法保证本轮题目不重复。';return;}
+ const aud=chooseAudio(8);
+ const heard=shuffle(aud.slice(0,5).map(q=>({kind:'listen',key:q.answer,src:q.src,original:q.original,opts:answerOptions(q),tip:q.tip})));
  const spelled=shuffle(aud.slice(5,8).map(q=>({kind:'spell',key:q.answer,src:q.src,original:q.original,tip:q.tip})));
- const seen=shuffle(pickLeast(fresh,5,WORDS).map(w=>({kind:'decode',key:w,model:w})));
+ const audioWords=aud.map(q=>q.answer);
+ const seen=shuffle(chooseDecode(audioWords,5).map(w=>({kind:'decode',key:w,model:w})));
  const check=shuffle(pickLeast(learned,3,LETTERS).map(w=>({kind:'letter',key:w,model:letterExamples[w]})));
  tasks=[...heard,...spelled,...seen,...check];answers=[];idx=0;answered=false;last=null;
  $('adIntro').style.display='none';$('adResult').style.display='none';$('adQuestion').style.display='block';draw();

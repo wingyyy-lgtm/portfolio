@@ -23,12 +23,22 @@
 .tabs{display:flex;gap:9px;margin:0 0 18px}.tabs button{flex:1;border:1px solid #cbd5e4;color:#263d60;background:#fff;border-radius:12px;min-height:48px;font-size:14px;font-weight:700}.tabs button.active{background:#1c5ce4;color:#fff;border-color:#1c5ce4}
 #adaptive{display:block}.adaptive-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.adaptive-head strong{font-size:15px}.tiny{font-size:12px;color:#63718b;line-height:1.6}
 .rand-btn{border:0;border-radius:12px;padding:13px 16px;background:#1c5ce4;color:#fff;font-size:15px;font-weight:750;cursor:pointer;min-height:48px}.rand-btn.secondary{background:#eef3ff;color:#20488b;border:1px solid #b8caee}.rand-btn:disabled{opacity:.35}.question-tags{color:#4b6c9d;font-size:12px;font-weight:750;letter-spacing:.025em;margin:11px 0}.sound-text{font-size:36px;text-align:center;letter-spacing:.08em;font-weight:750;color:#163258;padding:8px 0}.sound-box{border:1px solid #dce5f1;border-radius:12px;background:#f5f8fd;padding:14px;line-height:1.75;margin:12px 0}.sound-box strong{font-size:17px}.choice-list{display:grid;gap:9px;margin:14px 0}.choice-list button{min-height:53px;padding:12px 16px;text-align:left;font-size:18px;font-weight:650;border:1.5px solid #d5dfed;background:#fbfcfe;color:#17263f;border-radius:12px}.choice-list button:active{background:#eaf1ff}.choice-list button:disabled{opacity:.7}.typed{font-size:20px;padding:14px 16px;border-radius:12px;border:1.5px solid #bbc8dc;width:100%;outline-color:#1c5ce4;margin:6px 0 12px}.meter{height:8px;background:#e1e8f5;border-radius:99px;margin:12px 0 20px;overflow:hidden}.meter div{height:100%;width:0;background:#1b63df;transition:width .2s}.row-controls{display:flex;gap:9px;flex-wrap:wrap;margin:13px 0}.row-controls>*{flex:1}.report-list{margin-top:12px;display:grid;gap:10px}.report-item{border-bottom:1px solid #e8edf5;padding:10px 0;font-size:13px;line-height:1.75}.report-item .failure{color:#bb3535}.report-item .success{color:#087a56}.report-item .self{color:#57687f}#adHistory pre{white-space:pre-wrap;word-break:break-word;font-size:11px;color:#51617c}#adResult{display:none}#adQuestion{display:none}#adHistory details{margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #edf1f7}#adMessage{min-height:24px;font-size:13px;color:#456284;margin:8px 0}#adAudio{width:100%;height:42px;display:none;margin-top:8px}.report-total{font-size:29px;line-height:1.3;font-weight:800;color:#172d4e;margin:8px 0}
+
+.model-card{margin:17px 0 6px;padding:14px;border:1px solid #bfcee8;border-radius:14px;background:#f7faff}
+.model-play{width:100%;padding:15px;border:0;border-radius:12px;background:#165bea;color:#fff;font-size:16px;font-weight:700}
+.model-audio{width:100%;height:43px;margin:11px 0 4px}
+.model-note{font-size:13px;color:#53647b;line-height:1.65;margin:10px 0}
+.model-card a{font-size:12px;color:#2254ad}
+.voice-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.voice-controls button{flex:1;min-width:120px;background:#fff;color:#184683;border:1px solid #8ea8d1;border-radius:10px;padding:12px;font-weight:650}
+.voice-controls audio{width:100%;margin-top:8px}
+.model-status{font-size:13px;min-height:23px;margin-top:7px;color:#445a77}
 </style></head><body><main><div style="font-size:12px;letter-spacing:.14em;font-weight:850;color:#5d718f">ENGLISH LAB · LISTENING</div><h1>真人英语 · 随机测评</h1><p class="sub">真人原声听辨、听写，以及陌生词拼读和已学字母音复习。每次随机换题；原有10题保留在右侧。</p><div id="savedResult" style="display:none"></div>
 <div class="tabs" aria-label="学习模式"><button id="adTab" type="button" class="active">随机综合测评</button><button id="oldTab" type="button">原有 10 题</button></div>
 <section class="card" id="adaptive">
-<div class="adaptive-head"><strong>随机综合测评 · 第1版</strong><span class="tiny">16题 / 每轮变化</span></div>
-<p class="muted" style="font-size:13px;line-height:1.75">5题真人听词选择、3题真人听写、5题陌生词独立拼读、3题字母音复习。每轮随机抽题、打乱选项，并优先抽较少出现的字母和新词。</p>
-<div id="adIntro"><div class="sound-box"><strong>怎样才算真正掌握？</strong><br>听辨和听写自动判分；看词开口读、字母发音只能先自评，不能算系统验证通过。已讲过的字母不自动算掌握。</div><button class="rand-btn" id="adStart" style="width:100%">开始一轮随机测试</button></div>
+<div class="adaptive-head"><strong>随机综合测评 · 真人示范版</strong><span class="tiny">16题 / 每轮变化</span></div>
+<p class="muted" style="font-size:13px;line-height:1.75">5题真人听词选择、3题真人听写、5题陌生词先读后听真人示范、3题字母音配真人例词。每轮随机抽题和打乱选项；发音部分为对照练习，不自动判分。</p>
+<div id="adIntro"><div class="sound-box"><strong>怎样才算真正掌握？</strong><br>听辨和听写自动判分；先自己读，再打开提示听真人示范，可用麦克风录音回放自己对照。听到范例不等于系统验证发音正确；只有听词和听写自动计分。</div><button class="rand-btn" id="adStart" style="width:100%">开始一轮随机测试</button></div>
 <div id="adQuestion"><div class="tiny" id="adCount"></div><div class="meter"><div id="adProgress"></div></div><div class="question-tags" id="adMode"></div><h2 id="adPrompt" style="font-size:19px;margin-bottom:12px"></h2><div id="adContent"></div><audio id="adAudio" controls playsinline preload="none"></audio><div id="adMessage" role="status"></div><div id="adExplain"></div><button id="adNext" type="button" class="rand-btn" disabled style="width:100%;margin-top:12px">下一题</button></div>
 <div id="adResult"><h2 style="margin:0">本轮测评完成</h2><div class="report-total" id="adScore"></div><p class="tiny" id="adSummary"></p><div class="row-controls"><button id="adCopy" class="rand-btn" type="button">复制详细报告</button><button id="adAgain" class="rand-btn secondary" type="button">换一组新题</button></div><p id="adCopyStatus" class="tiny"></p><div class="report-list" id="adDetails"></div></div>
 <details style="margin-top:22px"><summary style="font-weight:700;cursor:pointer">查看随机测评历史成绩</summary><div id="adHistory" class="tiny"></div></details>
@@ -171,14 +181,18 @@ const learned=['S','M','A','T','P','I','N','O','D','G','B','F','H','J','C','L','
 const letterDetails={S:['/s/','sun'],M:['/m/','map'],A:['/æ/','map，短元音'],T:['/t/','top'],P:['/p/','pig'],I:['/ɪ/','sit，短元音'],N:['/n/','net'],O:['/ɑ/','hot，美式常见短元音（随口音有差异）'],D:['/d/','dog'],G:['/ɡ/','gap，此处为硬 G'],B:['/b/','bed'],F:['/f/','fan'],H:['/h/','hat'],J:['/dʒ/','jam'],C:['/k/','cap，此处为硬 C'],L:['/l/','lip'],R:['/ɹ/','red，美式 r'],E:['/ɛ/','pen，短元音'],K:['/k/','kid'],V:['/v/','vet'],W:['/w/','wet'],Y:['/j/','yes，辅音用法'],Q:['常与 u 组成 qu /kw/','queen；U 尚未系统学习，暂只认识规律，不判定独立掌握']};
 const phoneme={a:'/æ/',b:'/b/',c:'/k/',d:'/d/',e:'/ɛ/',f:'/f/',g:'/ɡ/',h:'/h/',i:'/ɪ/',j:'/dʒ/',k:'/k/',l:'/l/',m:'/m/',n:'/n/',o:'/ɑ/',p:'/p/',r:'/ɹ/',s:'/s/',t:'/t/',v:'/v/',w:'/w/',y:'/j/'};
 // Simple regular new words only; deliberately exclude U, X, Z and most words from the audio quiz.
-const fresh=['map','nap','tap','lap','cap','cab','ram','rat','bat','pat','mat','dad','bad','mad','fan','fin','fit','fat','hat','hit','hen','hot','hop','pot','top','not','got','log','fog','mop','lip','lid','dip','did','tip','pin','tin','win','wig','big','dig','rib','rid','met','pet','jet','let','vet','van','wet','web','yes','yet','yam','jam','jog','kid','kit','gap','gas','rag','tag','leg','pan'];
+// Only real US-English recordings with verified Wikimedia Commons file pages. Audio is whole-word model, not isolated phoneme.
+const realFiles={"sit": "En-us-sit.ogg", "pen": "En-us-pen.ogg", "bed": "En-us-bed.ogg", "sad": "En-us-sad.ogg", "dog": "En-us-dog.ogg", "pig": "En-us-pig.ogg", "man": "En-us-man.ogg", "red": "En-us-red.ogg", "net": "En-us-net.ogg", "cat": "En-us-cat.ogg", "map": "En-us-map.ogg", "hat": "En-us-hat.ogg", "kid": "En-us-kid.ogg", "pan": "En-us-pan.ogg", "yes": "En-us-yes.ogg", "top": "En-us-top.ogg", "tip": "En-us-tip.ogg", "sun": "En-us-Sun.ogg", "queen": "En-us-queen.ogg", "web": "En-us-web.ogg", "fun": "En-us-fun.ogg", "vast": "En-us-vast.ogg", "word": "En-us-word.ogg", "jam": "En-us-jam.ogg", "go": "En-us-go.ogg", "lips": "En-us-lips.ogg", "water": "En-us-water.ogg"};
+const realMp3Urls={"sit":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/40/En-us-sit.ogg/En-us-sit.ogg.mp3","pen":"https://upload.wikimedia.org/wikipedia/commons/transcoded/8/86/En-us-pen.ogg/En-us-pen.ogg.mp3","bed":"https://upload.wikimedia.org/wikipedia/commons/transcoded/1/14/En-us-bed.ogg/En-us-bed.ogg.mp3","sad":"https://upload.wikimedia.org/wikipedia/commons/transcoded/5/51/En-us-sad.ogg/En-us-sad.ogg.mp3","dog":"https://upload.wikimedia.org/wikipedia/commons/transcoded/0/06/En-us-dog.ogg/En-us-dog.ogg.mp3","pig":"https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e4/En-us-pig.ogg/En-us-pig.ogg.mp3","man":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/45/En-us-man.ogg/En-us-man.ogg.mp3","red":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c9/En-us-red.ogg/En-us-red.ogg.mp3","net":"https://upload.wikimedia.org/wikipedia/commons/transcoded/2/28/En-us-net.ogg/En-us-net.ogg.mp3","cat":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/46/En-us-cat.ogg/En-us-cat.ogg.mp3","map":"https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e0/En-us-map.ogg/En-us-map.ogg.mp3","hat":"https://upload.wikimedia.org/wikipedia/commons/transcoded/8/8b/En-us-hat.ogg/En-us-hat.ogg.mp3","kid":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c7/En-us-kid.ogg/En-us-kid.ogg.mp3","pan":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cf/En-us-pan.ogg/En-us-pan.ogg.mp3","yes":"https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b1/En-us-yes.ogg/En-us-yes.ogg.mp3","top":"https://upload.wikimedia.org/wikipedia/commons/transcoded/3/32/En-us-top.ogg/En-us-top.ogg.mp3","tip":"https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f8/En-us-tip.ogg/En-us-tip.ogg.mp3","sun":"https://upload.wikimedia.org/wikipedia/commons/transcoded/4/4b/En-us-Sun.ogg/En-us-Sun.ogg.mp3","queen":"https://upload.wikimedia.org/wikipedia/commons/transcoded/d/d0/En-us-queen.ogg/En-us-queen.ogg.mp3","web":"https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c6/En-us-web.ogg/En-us-web.ogg.mp3","fun":"https://upload.wikimedia.org/wikipedia/commons/transcoded/f/fd/En-us-fun.ogg/En-us-fun.ogg.mp3","vast":"https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e8/En-us-vast.ogg/En-us-vast.ogg.mp3","word":"https://upload.wikimedia.org/wikipedia/commons/transcoded/b/bf/En-us-word.ogg/En-us-word.ogg.mp3","jam":"https://upload.wikimedia.org/wikipedia/commons/transcoded/d/dc/En-us-jam.ogg/En-us-jam.ogg.mp3","go":"https://upload.wikimedia.org/wikipedia/commons/transcoded/0/0a/En-us-go.ogg/En-us-go.ogg.mp3","lips":"https://upload.wikimedia.org/wikipedia/commons/transcoded/3/3f/En-us-lips.ogg/En-us-lips.ogg.mp3","water":"https://upload.wikimedia.org/wikipedia/commons/transcoded/b/bd/En-us-water.ogg/En-us-water.ogg.mp3"};
+const letterExamples={"S": "sun", "M": "map", "A": "map", "T": "top", "P": "pig", "I": "sit", "N": "net", "O": "dog", "D": "dog", "G": "go", "B": "bed", "F": "fun", "H": "hat", "J": "jam", "C": "cat", "L": "lips", "R": "red", "E": "pen", "K": "kid", "V": "vast", "W": "web", "Y": "yes", "Q": "queen"};
+const fresh=["map", "hat", "kid", "pan", "yes", "top", "tip", "sun", "web", "jam", "sit", "pen", "bed", "sad", "dog", "pig", "man", "red", "net", "cat"];
 const shuffle=a=>{let b=a.slice();for(let j=b.length-1;j>0;j--){let k=Math.floor(Math.random()*(j+1));[b[j],b[k]]=[b[k],b[j]]}return b};
 const safeRead=(key,def)=>{try{let r=localStorage.getItem(key);return r?JSON.parse(r):def}catch(e){return def}};
 const safeSave=(key,v)=>{try{localStorage.setItem(key,JSON.stringify(v));return true}catch(e){return false}};
 const countMap=key=>{let obj=safeRead(key,{});return obj&&typeof obj==='object'&&!Array.isArray(obj)?obj:{}};
 const pickLeast=(arr,n,key)=>{let counts=countMap(key);return arr.map(x=>({x,rank:Number(counts[x]||0)*50+Math.random()*25})).sort((a,b)=>a.rank-b.rank).slice(0,n).map(a=>a.x)};
 let tasks=[],answers=[],idx=0,answered=false,listens=0,last=null;
-const taskTypes={listen:'真人听力 · 选择',spell:'真人听写 · 输入',decode:'看新词 · 自己拼读',letter:'随机字母 · 发音回忆'};
+const taskTypes={listen:'真人听力 · 选择',spell:'真人听写 · 输入',decode:'陌生词 · 先读后听真人示范',letter:'字母音 · 真人例词对照'};
 function start(){
  const voice=typeof questions!=='undefined'?questions:[];
  if(voice.length<8){$('adMessage').textContent='未找到原有真人发音题库，无法开始';return}
@@ -186,8 +200,8 @@ function start(){
  const aud=shuffle(voice).slice(0,8);
  const heard=shuffle(aud.slice(0,5).map(q=>({kind:'listen',key:q.answer,src:q.src,original:q.original,opts:shuffle(q.opts),tip:q.tip})));
  const spelled=shuffle(aud.slice(5,8).map(q=>({kind:'spell',key:q.answer,src:q.src,original:q.original,tip:q.tip})));
- const seen=shuffle(pickLeast(fresh,5,WORDS).map(w=>({kind:'decode',key:w})));
- const check=shuffle(pickLeast(learned,3,LETTERS).map(w=>({kind:'letter',key:w})));
+ const seen=shuffle(pickLeast(fresh,5,WORDS).map(w=>({kind:'decode',key:w,model:w})));
+ const check=shuffle(pickLeast(learned,3,LETTERS).map(w=>({kind:'letter',key:w,model:letterExamples[w]})));
  tasks=[...heard,...spelled,...seen,...check];answers=[];idx=0;answered=false;last=null;
  $('adIntro').style.display='none';$('adResult').style.display='none';$('adQuestion').style.display='block';draw();
 }
@@ -198,7 +212,7 @@ function audioBlock(q){
  wrap.append(play,link,skip);$('adAudio').src=q.src;$('adAudio').style.display='block';return wrap;
 }
 function draw(){
- answered=false;listens=0;let q=tasks[idx],content=$('adContent');content.replaceChildren();$('adExplain').replaceChildren();$('adMessage').textContent='';$('adNext').disabled=true;
+ resetRecording();refHeard=false;answered=false;listens=0;let q=tasks[idx],content=$('adContent');content.replaceChildren();$('adExplain').replaceChildren();$('adMessage').textContent='';$('adNext').disabled=true;
  $('adNext').textContent=idx===tasks.length-1?'查看本轮报告':'下一题';
  $('adCount').textContent='第 '+(idx+1)+' / '+tasks.length+' 题';$('adProgress').style.width=Math.round(idx/tasks.length*100)+'%';$('adMode').textContent=taskTypes[q.kind];
  const player=$('adAudio');player.pause();player.removeAttribute('src');player.load();player.style.display='none';
@@ -210,16 +224,52 @@ function draw(){
   let input=document.createElement('input');input.type='text';input.className='typed';input.autocapitalize='off';input.autocomplete='off';input.spellcheck=false;input.placeholder='在这里拼写听到的单词';input.setAttribute('aria-label','拼写听到的单词');
   let btn=document.createElement('button');btn.type='button';btn.className='rand-btn';btn.textContent='提交拼写';btn.onclick=()=>{let val=input.value.trim().toLowerCase();if(val)commit({chosen:val,ok:val===q.key})};input.addEventListener('keydown',e=>{if(e.key==='Enter')btn.click()});content.append(input,btn);
  }else if(q.kind==='decode'){
-  $('adPrompt').textContent='请先看着这个陌生单词，自己大声拼读。';let word=document.createElement('div');word.className='sound-text';word.textContent=q.key;content.append(word);
-  let note=document.createElement('p');note.className='tiny';note.textContent='先不看答案，把字母发音连起来。按“显示提示”后自己判断是否独立完成；系统没有听到或评分你的声音。';content.append(note);
-  let reveal=document.createElement('button');reveal.className='rand-btn secondary';reveal.type='button';reveal.textContent='显示提示，再自行评价';reveal.onclick=()=>{reveal.disabled=true;let guide=document.createElement('div');guide.className='sound-box';guide.textContent=[...q.key].map(x=>phoneme[x]||x).join(' + ')+' → '+q.key;content.append(guide);selfButtons(content)};content.append(reveal);
+  $('adPrompt').textContent='看着这个新单词先自己读；之后打开提示，听真人标准发音。';
+  let word=document.createElement('div');word.className='sound-text';word.textContent=q.key;content.append(word);
+  let note=document.createElement('p');note.className='tiny';note.textContent='第一遍不要看提示，也不要先听。读完再按下面按钮。';content.append(note);
+  let reveal=document.createElement('button');reveal.className='rand-btn secondary';reveal.type='button';reveal.textContent='显示提示 + 听真人发音';
+  reveal.onclick=()=>{reveal.disabled=true;let guide=document.createElement('div');guide.className='sound-box';guide.textContent=[...q.key].map(x=>phoneme[x]||x).join(' + ')+' → '+q.key;content.append(guide);referenceAudio(content,q.model);practiceDone(content)};content.append(reveal);
  }else{
-  $('adPrompt').textContent='先自己读出这个字母的常见发音。';let word=document.createElement('div');word.className='sound-text';word.textContent=q.key;content.append(word);
-  let note=document.createElement('p');note.className='tiny';note.textContent='读出字母音，不是字母名称。然后显示提示并自评；Q 的 qu 规则暂不计作独立掌握。';content.append(note);
-  let reveal=document.createElement('button');reveal.className='rand-btn secondary';reveal.type='button';reveal.textContent='显示参考发音提示';reveal.onclick=()=>{reveal.disabled=true;let guide=document.createElement('div');guide.className='sound-box';let [p,ex]=letterDetails[q.key];guide.textContent=q.key+'：'+p+'，例 '+ex;content.append(guide);selfButtons(content)};content.append(reveal);
+  $('adPrompt').textContent='先读出字母的常见发音，再听例词中的真实读法。';
+  let word=document.createElement('div');word.className='sound-text';word.textContent=q.key;content.append(word);
+  let note=document.createElement('p');note.className='tiny';note.textContent='这里检查的是字母的常见发音，不是字母名称。范例音频读完整单词，不是单独读这个字母。';content.append(note);
+  let reveal=document.createElement('button');reveal.className='rand-btn secondary';reveal.type='button';reveal.textContent='显示字母音提示 + 真人例词';
+  reveal.onclick=()=>{reveal.disabled=true;let guide=document.createElement('div');guide.className='sound-box';let [p,ex]=letterDetails[q.key];guide.textContent=q.key+'：'+p+'；真人例词：'+q.model+'（听其中的相关发音）'+(q.key==='Q'?'。Q通常与U组成qu发 /kw/。':'');content.append(guide);referenceAudio(content,q.model);practiceDone(content)};content.append(reveal);
  }
 }
-function selfButtons(content){let options=document.createElement('div');options.className='choice-list';[['independent','独立读出来了（自评）'],['hint','看提示才会'],['no','还不会']].forEach(([v,t])=>{let b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=()=>commit({chosen:t,ok:null,self:v});options.append(b)});content.append(options)}
+// User taps to play original real-person recording. Never synthesize a missing voice.
+let voiceStream=null,voiceRecorder=null,voiceChunks=[],voiceUrl=null,refHeard=false;
+function resetRecording(){if(voiceRecorder&&voiceRecorder.state==='recording')try{voiceRecorder.stop()}catch(e){}voiceRecorder=null;if(voiceStream){voiceStream.getTracks().forEach(t=>t.stop());voiceStream=null}if(voiceUrl){URL.revokeObjectURL(voiceUrl);voiceUrl=null}}
+function referenceAudio(content,model){
+ const filename=realFiles[model],card=document.createElement('div');card.className='model-card';
+ if(!filename){card.textContent='该词还没有核实过真人音频；本题不能作为发音验证。';content.append(card);return}
+ const ogg='https://commons.wikimedia.org/wiki/Special:Redirect/file/'+encodeURIComponent(filename);const mp3=realMp3Urls[model];
+ let heading=document.createElement('p');heading.className='model-note';heading.textContent='真人示范：'+model+'。先听，然后再读一次；可以录下自己的声音，交替播放作对照。';card.append(heading);
+ const play=document.createElement('button');play.type='button';play.className='model-play';play.textContent='🔊 听真人标准发音';
+ const audio=document.createElement('audio');audio.className='model-audio';audio.controls=true;audio.preload='none';audio.playsInline=true;audio.src=(model==='cat'&&typeof questions!=='undefined'&&questions.find(q=>q.answer==='cat'))?questions.find(q=>q.answer==='cat').src:mp3;
+ const status=document.createElement('div');status.className='model-status';status.textContent='录音来自 Wikimedia Commons，需联网。';
+ play.onclick=()=>{audio.pause();audio.currentTime=0;let p=audio.play();if(p&&p.catch)p.catch(()=>status.textContent='播放受限，请试下面的系统播放条或原始录音。')};
+ let triedOgg=false;audio.onplaying=()=>{refHeard=true;status.textContent='真人发音正在播放。可重复听，再录下自己的声音对照。'};audio.onerror=()=>{if(!triedOgg&&model!=='cat'){triedOgg=true;status.textContent='MP3 暂时无法加载，尝试原始 OGG 音频…';audio.src=ogg;audio.load()}else status.textContent='真人录音加载失败，请打开原始页面试听；本题请标记音频故障，不要猜。'};
+ const link=document.createElement('a');link.textContent='原始人声与授权页面';link.target='_blank';link.rel='noopener';link.href='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(filename);
+ card.append(play,audio,status,link);
+ // This user-initiated recording stays in the page; no score is inferred from it.
+ const controls=document.createElement('div');controls.className='voice-controls';let record=document.createElement('button');record.type='button';record.textContent='🎙 录下我读的声音';
+ const result=document.createElement('audio');result.controls=true;result.playsInline=true;result.style.display='none';
+ record.onclick=async()=>{
+  if(voiceRecorder&&voiceRecorder.state==='recording'){voiceRecorder.stop();record.disabled=true;record.textContent='正在生成录音…';return}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){status.textContent='当前浏览器无法录音。仍然可以反复听真人示范。';return}
+  try{
+   resetRecording();voiceStream=await navigator.mediaDevices.getUserMedia({audio:true});const candidates=['audio/mp4','audio/webm;codecs=opus','audio/webm'];const mime=candidates.find(t=>MediaRecorder.isTypeSupported(t));voiceRecorder=mime?new MediaRecorder(voiceStream,{mimeType:mime}):new MediaRecorder(voiceStream);
+   voiceChunks=[];voiceRecorder.ondataavailable=e=>{if(e.data.size>0)voiceChunks.push(e.data)};
+   voiceRecorder.onstop=()=>{const blob=new Blob(voiceChunks,{type:voiceRecorder.mimeType||'audio/mp4'});if(voiceUrl)URL.revokeObjectURL(voiceUrl);voiceUrl=URL.createObjectURL(blob);result.src=voiceUrl;result.style.display='block';record.disabled=false;record.textContent='🎙 重新录音';status.textContent='录音已生成。可以先听真人原声，再听自己的声音。';if(voiceStream)voiceStream.getTracks().forEach(t=>t.stop());voiceStream=null};
+   voiceRecorder.start();record.textContent='⏹ 停止录音';status.textContent='正在录音，仅保留在当前页面，不上传到网站服务器。';
+  }catch(e){status.textContent='无法启用麦克风：请检查浏览器权限。你仍可听真人示范。';record.textContent='🎙 录下我读的声音';}
+ };controls.append(record,result);card.append(controls);content.append(card)
+}
+function practiceDone(content){let help=document.createElement('p');help.className='tiny';help.textContent='注意：完成听力对照 ≠ 自动判定发音准确。以下仅记录是否练习过。';content.append(help);
+ let options=document.createElement('div');options.className='choice-list';
+ [['compared','已听真人示范并对照练习（未评分）'],['needswork','听完后仍不确定，需要复习'],['audiofail','音频打不开，本题不评']].forEach(([v,t])=>{let b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=()=>{if(v==='compared'&&!refHeard){let msg=document.querySelector('#adContent .model-status');if(msg)msg.textContent='请先播放真人原声；若一直不能播放，请选择“音频打不开”。';return}resetRecording();commit({chosen:t,ok:null,self:v})};options.append(b)});content.append(options)
+}
 $('adAudio').addEventListener('play',()=>listens++);
 $('adAudio').addEventListener('error',()=>{$('adMessage').textContent='音频加载失败。试试原始来源，或标记故障跳过。'});
 function commit(p){if(answered)return;answered=true;const q=tasks[idx];answers.push({n:idx+1,kind:q.kind,correct:q.key,chosen:p.chosen,ok:p.ok,self:p.self||null,listens,tip:q.tip||''});
@@ -227,21 +277,21 @@ function commit(p){if(answered)return;answered=true;const q=tasks[idx];answers.p
  if(q.kind==='listen'||q.kind==='spell'){
   if(p.ok===null){$('adMessage').textContent='已标记音频故障，本题不计分。'}
   else $('adMessage').textContent=(p.ok?'✓ 正确。':'✗ 本题正确答案：'+q.key+'。')+' '+(q.tip||'');
- } else $('adMessage').textContent=p.self==='independent'?'已记录：独立读出（自评，不是发音评分）。':p.self==='hint'?'已记录：提示后才会。':'已记录：暂时不会。';
+ } else $('adMessage').textContent=p.self==='compared'?'已记录：完成真人原声对照，不代表发音已通过。':p.self==='needswork'?'已记录：还需要复习。':'已记录：真人音频故障，本题不评。';
  $('adContent').querySelectorAll('button,input').forEach(b=>b.disabled=true);
 }
 $('adNext').onclick=()=>{if(!answered)return;idx++;if(idx<tasks.length)draw();else finish()};
 function updateCounts(){let wd=countMap(WORDS),lc=countMap(LETTERS);answers.forEach(a=>{if(a.kind==='decode')wd[a.correct]=(wd[a.correct]||0)+1;if(a.kind==='letter')lc[a.correct]=(lc[a.correct]||0)+1});safeSave(WORDS,wd);safeSave(LETTERS,lc)}
 function compute(s){let obj=s.results.filter(a=>a.kind==='listen'||a.kind==='spell'),valid=obj.filter(a=>a.ok!==null),right=valid.filter(a=>a.ok).length;let spoken=s.results.filter(a=>a.kind==='decode'),letters=s.results.filter(a=>a.kind==='letter');return {right,total:valid.length,skipped:obj.length-valid.length,spoken,letters}}
-function format(s){let z=compute(s);return ['English Lab 随机综合测评','完成时间：'+new Date(s.at).toLocaleString('zh-CN',{timeZone:'Asia/Singapore'}),'客观听力+听写：'+z.right+'/'+z.total+(z.skipped?'（'+z.skipped+'题音频故障跳过）':''),'独立拼读（自评）：'+z.spoken.filter(x=>x.self==='independent').length+'/'+z.spoken.length,'字母音（自评）：'+z.letters.filter(x=>x.self==='independent').length+'/'+z.letters.length,'逐题记录：',...s.results.map(x=>x.n+'. ['+taskTypes[x.kind]+'] 正确/目标 '+x.correct+'；我的回答 '+x.chosen+'；'+(x.ok===null?'自评或跳过':x.ok?'正确':'错误')),'备注：音频答题为客观判定，开口拼读和字母音为自评，不能当做自动发音评分。词库真人原声目前仅10词，不能单凭一次分数证明真正掌握。'].join('\n')}
-function render(s){let z=compute(s);$('adScore').textContent='客观听力与听写：'+z.right+' / '+z.total;$('adSummary').textContent='本轮 '+s.results.length+' 题。陌生词独立读出（自评）'+z.spoken.filter(x=>x.self==='independent').length+'/'+z.spoken.length+'；字母发音独立回忆（自评）'+z.letters.filter(x=>x.self==='independent').length+'/'+z.letters.length+'。只把真人听词选择和听写计入客观成绩。';
- let target=$('adDetails');target.replaceChildren();s.results.forEach(x=>{let item=document.createElement('div');item.className='report-item';let heading=document.createElement('strong');heading.textContent=x.n+'. '+taskTypes[x.kind]+' · '+x.correct;let para=document.createElement('div');para.className=x.ok===false?'failure':x.ok===true?'success':'self';para.textContent='你的回答：'+x.chosen+'（'+(x.ok===null?'自评或跳过':x.ok?'正确':'错误')+'）';item.append(heading,para);target.append(item)})}
+function format(s){let z=compute(s);return ['English Lab 随机综合测评','完成时间：'+new Date(s.at).toLocaleString('zh-CN',{timeZone:'Asia/Singapore'}),'客观听力+听写：'+z.right+'/'+z.total+(z.skipped?'（'+z.skipped+'题音频故障跳过）':''),'拼读已听真人音对照（非判分）：'+z.spoken.filter(x=>x.self==='compared').length+'/'+z.spoken.length,'字母音已听例词对照（非判分）：'+z.letters.filter(x=>x.self==='compared').length+'/'+z.letters.length,'逐题记录：',...s.results.map(x=>x.n+'. ['+taskTypes[x.kind]+'] 正确/目标 '+x.correct+'；我的回答 '+x.chosen+'；'+(x.ok===null?'练习记录或跳过':x.ok?'正确':'错误')),'备注：听词和听写自动判分。口语仅记录是否听真人音并对照，不等于系统识别了用户发音。已核验多条真人原声文件页；新词参照音频需要联网。'].join('\n')}
+function render(s){let z=compute(s);$('adScore').textContent='客观听力与听写：'+z.right+' / '+z.total;$('adSummary').textContent='本轮 '+s.results.length+' 题。陌生词真人音对照（非发音评分）'+z.spoken.filter(x=>x.self==='compared').length+'/'+z.spoken.length+'；字母音真人例词对照'+z.letters.filter(x=>x.self==='compared').length+'/'+z.letters.length+'。只把听词选择和听写计入自动评分；参考发音对照不计分。';
+ let target=$('adDetails');target.replaceChildren();s.results.forEach(x=>{let item=document.createElement('div');item.className='report-item';let heading=document.createElement('strong');heading.textContent=x.n+'. '+taskTypes[x.kind]+' · '+x.correct;let para=document.createElement('div');para.className=x.ok===false?'failure':x.ok===true?'success':'self';para.textContent='你的回答：'+x.chosen+'（'+(x.ok===null?'练习记录或跳过':x.ok?'正确':'错误')+'）';item.append(heading,para);target.append(item)})}
 function history(){let s=safeRead(KEY,[]),target=$('adHistory');target.replaceChildren();if(!Array.isArray(s)||!s.length){target.textContent='还没有随机测评记录';return}s.slice(0,20).forEach((v,n)=>{let d=document.createElement('details'),sum=document.createElement('summary'),p=document.createElement('pre'),z=compute(v);sum.textContent=new Date(v.at).toLocaleString('zh-CN',{timeZone:'Asia/Singapore'})+' · 客观 '+z.right+'/'+z.total;p.textContent=format(v);d.append(sum,p);target.append(d)})}
 function finish(){let session={at:new Date().toISOString(),version:2,results:answers.slice()},old=safeRead(KEY,[]);last=session;safeSave(KEY,[session,...(Array.isArray(old)?old:[])].slice(0,20));updateCounts();$('adQuestion').style.display='none';$('adResult').style.display='block';render(session);history()}
 async function copy(v){try{await navigator.clipboard.writeText(v);return true}catch(e){let ta=document.createElement('textarea');ta.value=v;ta.style.cssText='width:100%;height:240px';$('adResult').append(ta);ta.focus();ta.select();try{return document.execCommand('copy')}catch(e){return false}}}
 $('adCopy').onclick=async()=>{if(!last)return;let ok=await copy(format(last));$('adCopyStatus').textContent=ok?'已复制。回到 ChatGPT 粘贴给老师。':'复制失败：长按选中下方出现的报告手动复制。'};
 $('adStart').onclick=start;$('adAgain').onclick=start;
-function changeMode(to){let classic=to==='classic';$('adTab').classList.toggle('active',!classic);$('oldTab').classList.toggle('active',classic);$('adaptive').style.display=classic?'none':'block';$('lesson').style.display=classic?'block':'none';$('done').style.display='none';$('adCopyStatus').textContent='';}
+function changeMode(to){resetRecording();let classic=to==='classic';$('adTab').classList.toggle('active',!classic);$('oldTab').classList.toggle('active',classic);$('adaptive').style.display=classic?'none':'block';$('lesson').style.display=classic?'block':'none';$('done').style.display='none';$('adCopyStatus').textContent='';}
 $('adTab').onclick=()=>changeMode('adaptive');$('oldTab').onclick=()=>changeMode('classic');history();changeMode('adaptive');
 })();
 </script></body></html>

@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="theme-color" content="#f6f8fc"/><title>English Lab — 真人英语听力</title><style>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="theme-color" content="#f6f8fc"/><title>English Lab — 自适应自然拼读测试</title><style>
 *{box-sizing:border-box}body{margin:0;background:#f6f8fc;color:#1e2c43;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:28px 16px}main{max-width:500px;margin:auto}small,.muted{color:#6b7890}h1{font-size:26px;margin:8px 0 6px}.sub{font-size:14px;line-height:1.7;color:#55657c;margin:0 0 18px}.card{background:white;border:1px solid #e1e7ef;box-shadow:0 14px 38px #2442640c;border-radius:22px;padding:21px}#meta{font-size:13px;font-weight:700;color:#63728b}#progressbar{height:7px;background:#e7edf7;border-radius:99px;overflow:hidden;margin:15px 0 24px}#progress{height:100%;width:0%;background:#2363eb;transition:width .2s}.listen{width:100%;border:0;border-radius:17px;color:white;background:#1c5ce4;display:flex;align-items:center;justify-content:center;gap:10px;min-height:72px;font-size:19px;font-weight:750;cursor:pointer;touch-action:manipulation}button:active{opacity:.8}#audio{display:block;width:100%;margin:12px auto 0;height:42px}#status{min-height:37px;margin:9px 0;font-size:13px;color:#596d8a;text-align:center}#options{display:grid;gap:11px;margin-top:13px}#options button{color:#1e2c43;border-radius:13px;background:#f8fafc;border:1.5px solid #dbe4f0;min-height:57px;text-align:left;padding:12px 17px;font-size:19px;font-weight:650;cursor:pointer}.right{border-color:#11a675!important;background:#edfbf5!important}.wrong{border-color:#d75a5a!important;background:#fff2f1!important}#feedback{margin-top:16px;min-height:76px;line-height:1.65;font-size:14px}#next{margin-top:10px;width:100%;background:#122b52;color:white;border:0;border-radius:13px;min-height:52px;font-size:16px;font-weight:700;cursor:pointer}#next:disabled{opacity:.35}footer{font-size:12px;line-height:1.7;color:#748098;margin:16px 2px}a{color:#2363eb}#done{display:none;text-align:center;line-height:1.7}#done h2{margin-bottom:4px}#replay{background:#fff;border:1px solid #abb9cf;border-radius:12px;padding:10px 14px;margin-top:12px;font-size:14px;font-weight:600;color:#223}#score{font-size:38px;font-weight:800}
 
 #reportTable{width:100%;border-collapse:collapse;text-align:left;font-size:13px;margin:15px 0 18px}
@@ -36,10 +36,10 @@
 </style></head><body><main><div style="font-size:12px;letter-spacing:.14em;font-weight:850;color:#5d718f">ENGLISH LAB · LISTENING</div><h1>真人英语 · 随机测评</h1><p class="sub">真人原声听辨、听写，以及陌生词拼读和已学字母音复习。每轮从26个真人原声基础词中轮换抽取，并避开上一轮；旧版固定10题仍保留供对照。</p><div id="savedResult" style="display:none"></div>
 <div class="tabs" aria-label="学习模式"><button id="adTab" type="button" class="active">随机综合测评</button><button id="oldTab" type="button">旧版固定10题</button></div>
 <section class="card" id="adaptive">
-<div class="adaptive-head"><strong>随机综合测评 · 真人示范版</strong><span class="tiny">16题 / 避重随机</span></div>
-<p class="muted" style="font-size:13px;line-height:1.75">5题真人听词选择、3题真人听写、5题陌生词先读后听真人示范、3题字母音配真人例词。从26个有真人录音的基础词中抽题，连续轮次尽量不重复；选项随机排序。发音部分为对照练习，不自动判分。</p>
+<div class="adaptive-head"><strong>随机综合测评 · 针对性纠错版</strong><span class="tiny">基础16题 + 最多3道针对性复测</span></div>
+<p class="muted" style="font-size:13px;line-height:1.75">基础题：5题真人听词、3题听写、5题陌生词拼读、3题已学字母。听辨/听写答错时，系统会分析可能混淆的声音，最多额外插入3道未见词复测。原始成绩和复测成绩分别记录；发音对照不自动判分。</p>
 <div id="adIntro"><div class="sound-box"><strong>怎样才算真正掌握？</strong><br>听辨和听写自动判分；先自己读，再打开提示听真人示范，可用麦克风录音回放自己对照。听到范例不等于系统验证发音正确；只有听词和听写自动计分。</div><button class="rand-btn" id="adStart" style="width:100%">开始一轮随机测试</button></div>
-<div id="adQuestion"><div class="tiny" id="adCount"></div><div class="meter"><div id="adProgress"></div></div><div class="question-tags" id="adMode"></div><h2 id="adPrompt" style="font-size:19px;margin-bottom:12px"></h2><div id="adContent"></div><audio id="adAudio" controls playsinline preload="none"></audio><div id="adMessage" role="status"></div><div id="adExplain"></div><button id="adNext" type="button" class="rand-btn" disabled style="width:100%;margin-top:12px">下一题</button></div>
+<div id="adQuestion"><div class="tiny" id="adCount"></div><div class="meter"><div id="adProgress"></div></div><div class="question-tags" id="adMode"></div><h2 id="adPrompt" style="font-size:19px;margin-bottom:12px"></h2><div id="adContent"></div><audio id="adAudio" controls playsinline preload="none"></audio><div id="adMessage" role="status"></div><div id="adDecision" class="sound-box" style="display:none" role="status"></div><div id="adExplain"></div><button id="adNext" type="button" class="rand-btn" disabled style="width:100%;margin-top:12px">下一题</button></div>
 <div id="adResult"><h2 style="margin:0">本轮测评完成</h2><div class="report-total" id="adScore"></div><p class="tiny" id="adSummary"></p><div class="row-controls"><button id="adCopy" class="rand-btn" type="button">复制详细报告</button><button id="adAgain" class="rand-btn secondary" type="button">换一组新题</button></div><p id="adCopyStatus" class="tiny"></p><div class="report-list" id="adDetails"></div></div>
 <details style="margin-top:22px"><summary style="font-weight:700;cursor:pointer">查看随机测评历史成绩</summary><div id="adHistory" class="tiny"></div></details>
 <p class="tiny" style="margin-top:15px">学习记录仅保存到当前浏览器，清除网站数据或换设备可能丢失。请使用“复制详细报告”发给老师，由老师写入 Notion。当前基础真人原声题库为26个词，词库用完后会开始新一轮随机循环；仍依赖 Wikimedia 网络资源，打不开可以标记音频故障跳过。</p>
@@ -247,7 +247,7 @@ function chooseDecode(audioWords,n){
  safeSave(LAST_DECODE,selected);return selected;
 }
 
-let tasks=[],answers=[],idx=0,answered=false,listens=0,last=null;
+let tasks=[],answers=[],idx=0,answered=false,listens=0,last=null,transferCount=0;
 const taskTypes={listen:'真人听力 · 选择',spell:'真人听写 · 输入',decode:'陌生词 · 先读后听真人示范',letter:'字母音 · 真人例词对照'};
 function start(){
  if(AUDIO_POOL.length<13){$('adMessage').textContent='真人词库不足，无法保证本轮题目不重复。';return;}
@@ -257,7 +257,7 @@ function start(){
  const audioWords=aud.map(q=>q.answer);
  const seen=shuffle(chooseDecode(audioWords,5).map(w=>({kind:'decode',key:w,model:w})));
  const check=shuffle(pickLeast(learned,3,LETTERS).map(w=>({kind:'letter',key:w,model:letterExamples[w]})));
- tasks=[...heard,...spelled,...seen,...check];answers=[];idx=0;answered=false;last=null;
+ tasks=[...heard,...spelled,...seen,...check];answers=[];idx=0;answered=false;transferCount=0;last=null;
  $('adIntro').style.display='none';$('adResult').style.display='none';$('adQuestion').style.display='block';draw();
 }
 function audioBlock(q){
@@ -267,12 +267,12 @@ function audioBlock(q){
  wrap.append(play,link,skip);$('adAudio').src=q.src;$('adAudio').style.display='block';return wrap;
 }
 function draw(){
- resetRecording();refHeard=false;answered=false;listens=0;let q=tasks[idx],content=$('adContent');content.replaceChildren();$('adExplain').replaceChildren();$('adMessage').textContent='';$('adNext').disabled=true;
+ resetRecording();refHeard=false;answered=false;listens=0;let q=tasks[idx],content=$('adContent');content.replaceChildren();$('adExplain').replaceChildren();$('adMessage').textContent='';$('adDecision').textContent='';$('adDecision').style.display='none';$('adNext').disabled=true;
  $('adNext').textContent=idx===tasks.length-1?'查看本轮报告':'下一题';
- $('adCount').textContent='第 '+(idx+1)+' / '+tasks.length+' 题';$('adProgress').style.width=Math.round(idx/tasks.length*100)+'%';$('adMode').textContent=taskTypes[q.kind];
+ $('adCount').textContent='第 '+(idx+1)+' / '+tasks.length+' 题'+(q.transfer?' · 新词针对性复测':'');$('adProgress').style.width=Math.round(idx/tasks.length*100)+'%';$('adMode').textContent=taskTypes[q.kind];
  const player=$('adAudio');player.pause();player.removeAttribute('src');player.load();player.style.display='none';
  if(q.kind==='listen'){
-  $('adPrompt').textContent='听到的是哪个单词？';content.append(audioBlock(q));
+  $('adPrompt').textContent=q.transfer?'新词复测：再听一个同类声音，判断你是否真的能区分。':'听到的是哪个单词？';content.append(audioBlock(q));
   let choices=document.createElement('div');choices.className='choice-list';q.opts.forEach(w=>{let btn=document.createElement('button');btn.type='button';btn.textContent=w;btn.onclick=()=>commit({chosen:w,ok:w===q.key});choices.append(btn)});content.append(choices);
  }else if(q.kind==='spell'){
   $('adPrompt').textContent='不看选项，听后输入英文单词。';content.append(audioBlock(q));
@@ -327,22 +327,92 @@ function practiceDone(content){let help=document.createElement('p');help.classNa
 }
 $('adAudio').addEventListener('play',()=>listens++);
 $('adAudio').addEventListener('error',()=>{$('adMessage').textContent='音频加载失败。试试原始来源，或标记故障跳过。'});
-function commit(p){if(answered)return;answered=true;const q=tasks[idx];answers.push({n:idx+1,kind:q.kind,correct:q.key,chosen:p.chosen,ok:p.ok,self:p.self||null,listens,tip:q.tip||''});
+// A bounded, inspectable teaching policy. This is NOT an LLM or a pronunciation scoring API.
+// AI integration would need a private backend and schema validation: never expose a key in GitHub Pages.
+const TRANSFER_LIMIT=3;
+const focusWords={
+  'e-i':['pen','bed','red','net','pin','sit','kid','hit','tip','pig','big'],
+  'a-e':['man','mad','sad','cat','map','hat','pan','bag','mat','bed','pen','red','net'],
+  'd-t':['sad','bed','red','mad','kid','dog','hat','mat','cat','sit','net','tip'],
+  'p-b':['pig','pen','pin','pan','big','bag','bed','web'],
+  'other':[]
+};
+const focusLabels={
+ 'e-i':'短元音 /ɛ/ 和 /ɪ/ 的听辨',
+ 'a-e':'短元音 /æ/ 和 /ɛ/ 的听辨',
+ 'd-t':'词尾 /d/ 和 /t/ 的听辨',
+ 'p-b':'辅音 /p/ 和 /b/ 的听辨',
+ 'other':'整词听辨或拼写（需要更多证据）'
+};
+function classifyConfusion(correct,chosen){
+ if(typeof correct!=='string'||typeof chosen!=='string'||correct.length!==chosen.length)return 'other';
+ const diffs=[];for(let k=0;k<correct.length;k++)if(correct[k]!==chosen[k])diffs.push([correct[k],chosen[k],k]);
+ if(diffs.length!==1)return 'other';
+ const [a,b,k]=diffs[0];const pair=[a,b].sort().join('');
+ if(pair==='ei')return 'e-i';
+ if(pair==='ae')return 'a-e';
+ if(pair==='dt'&&k===correct.length-1)return 'd-t';
+ if(pair==='bp')return 'p-b';
+ return 'other';
+}
+function chooseTransfer(q,chosen){
+ if(transferCount>=TRANSFER_LIMIT||q.transfer)return null;
+ const focus=classifyConfusion(q.key,chosen);
+ if(focus==='other')return {focus,task:null,note:'当前错选无法定位到单一声音差异，先记录，暂不凭猜测补题。'};
+ // Require a new, recorded whole-word sample with the same target feature, not a repeat of the original word.
+ const scheduled=new Set(tasks.map(t=>t.key));
+ const used=new Set(answers.map(a=>a.correct));
+ const root=focusWords[focus]||[];
+ let candidates=root.filter(w=>!scheduled.has(w)&&!used.has(w));
+ const currentVowel=(q.key.match(/[aeio]/)||[])[0];
+ const restrict=focus==='e-i'||focus==='a-e';
+ if(restrict){const matched=candidates.filter(w=>(w.match(/[aeio]/)||[])[0]===currentVowel);if(matched.length)candidates=matched;}
+ // Distinct source+word, near contrast; never add a target without genuine recorded audio.
+ const pool=candidates.map(w=>AUDIO_POOL.find(x=>x.answer===w)).filter(Boolean);
+ if(!pool.length)return {focus,task:null,note:'当前真人词库中没有未考过的同类单词；不重复旧题来假装复测。'};
+ const pick=shuffle(pool)[0];
+ const task={kind:'listen',key:pick.answer,src:pick.src,original:pick.original,opts:answerOptions(pick),tip:pick.tip,transfer:true,focus,parent:q.key,previousChoice:chosen};
+ return {focus,task,note:'识别到可能混淆：'+focusLabels[focus]+'。下一题改考没见过的 '+pick.answer+'，用真人录音检验能否迁移；这不是发音评分。'};
+}
+function commit(p){
+ if(answered)return;
+ answered=true;
+ const q=tasks[idx];
+ const rec={n:idx+1,kind:q.kind,correct:q.key,chosen:p.chosen,ok:p.ok,self:p.self||null,listens,tip:q.tip||'',transfer:!!q.transfer,focus:q.focus||null,parent:q.parent||null};
+ answers.push(rec);
  $('adNext').disabled=false;
  if(q.kind==='listen'||q.kind==='spell'){
   if(p.ok===null){$('adMessage').textContent='已标记音频故障，本题不计分。'}
   else $('adMessage').textContent=(p.ok?'✓ 正确。':'✗ 本题正确答案：'+q.key+'。')+' '+(q.tip||'');
+  if(p.ok===false&&!q.transfer){
+   const decision=chooseTransfer(q,p.chosen);
+   if(decision){
+    rec.focus=decision.focus;
+    const box=$('adDecision');box.textContent=decision.note;box.style.display='block';
+    if(decision.task){tasks.splice(idx+1,0,decision.task);transferCount++;$('adNext').textContent='换新词复测 →';}
+   }
+  } else if(q.transfer){
+   const box=$('adDecision');box.style.display='block';
+   box.textContent=p.ok===true?'新词迁移暂时答对；仍需以后再用另一组新词独立复测。':p.ok===false?'新词迁移仍出错：这一组声音需要教学；本轮不无限追加同类题。':'本题音频故障，没有判断学习效果。';
+  }
  } else $('adMessage').textContent=p.self==='compared'?'已记录：完成真人原声对照，不代表发音已通过。':p.self==='needswork'?'已记录：还需要复习。':'已记录：真人音频故障，本题不评。';
  $('adContent').querySelectorAll('button,input').forEach(b=>b.disabled=true);
 }
 $('adNext').onclick=()=>{if(!answered)return;idx++;if(idx<tasks.length)draw();else finish()};
 function updateCounts(){let wd=countMap(WORDS),lc=countMap(LETTERS);answers.forEach(a=>{if(a.kind==='decode')wd[a.correct]=(wd[a.correct]||0)+1;if(a.kind==='letter')lc[a.correct]=(lc[a.correct]||0)+1});safeSave(WORDS,wd);safeSave(LETTERS,lc)}
-function compute(s){let obj=s.results.filter(a=>a.kind==='listen'||a.kind==='spell'),valid=obj.filter(a=>a.ok!==null),right=valid.filter(a=>a.ok).length;let spoken=s.results.filter(a=>a.kind==='decode'),letters=s.results.filter(a=>a.kind==='letter');return {right,total:valid.length,skipped:obj.length-valid.length,spoken,letters}}
-function format(s){let z=compute(s);return ['English Lab 随机综合测评','完成时间：'+new Date(s.at).toLocaleString('zh-CN',{timeZone:'Asia/Singapore'}),'客观听力+听写：'+z.right+'/'+z.total+(z.skipped?'（'+z.skipped+'题音频故障跳过）':''),'拼读已听真人音对照（非判分）：'+z.spoken.filter(x=>x.self==='compared').length+'/'+z.spoken.length,'字母音已听例词对照（非判分）：'+z.letters.filter(x=>x.self==='compared').length+'/'+z.letters.length,'逐题记录：',...s.results.map(x=>x.n+'. ['+taskTypes[x.kind]+'] 正确/目标 '+x.correct+'；我的回答 '+x.chosen+'；'+(x.ok===null?'练习记录或跳过':x.ok?'正确':'错误')),'备注：听词和听写自动判分。口语仅记录是否听真人音并对照，不等于系统识别了用户发音。已核验多条真人原声文件页；新词参照音频需要联网。'].join('\n')}
-function render(s){let z=compute(s);$('adScore').textContent='客观听力与听写：'+z.right+' / '+z.total;$('adSummary').textContent='本轮 '+s.results.length+' 题。陌生词真人音对照（非发音评分）'+z.spoken.filter(x=>x.self==='compared').length+'/'+z.spoken.length+'；字母音真人例词对照'+z.letters.filter(x=>x.self==='compared').length+'/'+z.letters.length+'。只把听词选择和听写计入自动评分；参考发音对照不计分。';
- let target=$('adDetails');target.replaceChildren();s.results.forEach(x=>{let item=document.createElement('div');item.className='report-item';let heading=document.createElement('strong');heading.textContent=x.n+'. '+taskTypes[x.kind]+' · '+x.correct;let para=document.createElement('div');para.className=x.ok===false?'failure':x.ok===true?'success':'self';para.textContent='你的回答：'+x.chosen+'（'+(x.ok===null?'练习记录或跳过':x.ok?'正确':'错误')+'）';item.append(heading,para);target.append(item)})}
+function compute(s){
+ let base=s.results.filter(a=>(a.kind==='listen'||a.kind==='spell')&&!a.transfer);
+ let transfers=s.results.filter(a=>a.transfer);
+ let valid=base.filter(a=>a.ok!==null),right=valid.filter(a=>a.ok).length;
+ let transferValid=transfers.filter(a=>a.ok!==null),transferRight=transferValid.filter(a=>a.ok).length;
+ let spoken=s.results.filter(a=>a.kind==='decode'),letters=s.results.filter(a=>a.kind==='letter');
+ return {right,total:valid.length,skipped:base.length-valid.length,spoken,letters,transfers,transferRight,transferTotal:transferValid.length};
+}
+function format(s){let z=compute(s);return ['English Lab 随机综合测评','完成时间：'+new Date(s.at).toLocaleString('zh-CN',{timeZone:'Asia/Singapore'}),'基础听力+听写：'+z.right+'/'+z.total+(z.skipped?'（'+z.skipped+'题音频故障跳过）':''),'拼读已听真人音对照（非判分）：'+z.spoken.filter(x=>x.self==='compared').length+'/'+z.spoken.length,'字母音已听例词对照（非判分）：'+z.letters.filter(x=>x.self==='compared').length+'/'+z.letters.length,'针对性新词复测：'+z.transferRight+'/'+z.transferTotal+'（与基础分开计算，最多3题）','逐题记录：',...s.results.map(x=>x.n+'. ['+(x.transfer?'针对性新词复测':taskTypes[x.kind])+'] 正确/目标 '+x.correct+'；我的回答 '+x.chosen+'；'+(x.ok===null?'练习记录或跳过':x.ok?'正确':'错误')+(x.focus?'；错误线索/目标：'+focusLabels[x.focus]:'')+(x.parent?'；上一题：'+x.parent:'')),'备注：听词和听写自动判分。口语仅记录是否听真人音并对照，不等于系统识别了用户发音。已核验多条真人原声文件页；新词参照音频需要联网。'].join('\n')}
+function render(s){let z=compute(s);$('adScore').textContent='基础听力/听写：'+z.right+' / '+z.total+'；新词复测：'+z.transferRight+' / '+z.transferTotal;$('adSummary').textContent='本轮 '+s.results.length+' 题（原定16题，最多增加3题）。针对性新词复测与基础分数分开计算。陌生词真人音对照（非发音评分）'+z.spoken.filter(x=>x.self==='compared').length+'/'+z.spoken.length+'；字母音真人例词对照'+z.letters.filter(x=>x.self==='compared').length+'/'+z.letters.length+'。只把听词选择和听写计入自动评分；参考发音对照不计分。';
+ let target=$('adDetails');target.replaceChildren();s.results.forEach(x=>{let item=document.createElement('div');item.className='report-item';let heading=document.createElement('strong');heading.textContent=x.n+'. '+(x.transfer?'针对性新词复测':taskTypes[x.kind])+' · '+x.correct+(x.focus?' · '+focusLabels[x.focus]:'');let para=document.createElement('div');para.className=x.ok===false?'failure':x.ok===true?'success':'self';para.textContent='你的回答：'+x.chosen+'（'+(x.ok===null?'练习记录或跳过':x.ok?'正确':'错误')+'）';item.append(heading,para);target.append(item)})}
 function history(){let s=safeRead(KEY,[]),target=$('adHistory');target.replaceChildren();if(!Array.isArray(s)||!s.length){target.textContent='还没有随机测评记录';return}s.slice(0,20).forEach((v,n)=>{let d=document.createElement('details'),sum=document.createElement('summary'),p=document.createElement('pre'),z=compute(v);sum.textContent=new Date(v.at).toLocaleString('zh-CN',{timeZone:'Asia/Singapore'})+' · 客观 '+z.right+'/'+z.total;p.textContent=format(v);d.append(sum,p);target.append(d)})}
-function finish(){let session={at:new Date().toISOString(),version:2,results:answers.slice()},old=safeRead(KEY,[]);last=session;safeSave(KEY,[session,...(Array.isArray(old)?old:[])].slice(0,20));updateCounts();$('adQuestion').style.display='none';$('adResult').style.display='block';render(session);history()}
+function finish(){let session={at:new Date().toISOString(),version:4,engine:'bounded-rule-policy',results:answers.slice()},old=safeRead(KEY,[]);last=session;safeSave(KEY,[session,...(Array.isArray(old)?old:[])].slice(0,20));updateCounts();$('adQuestion').style.display='none';$('adResult').style.display='block';render(session);history()}
 async function copy(v){try{await navigator.clipboard.writeText(v);return true}catch(e){let ta=document.createElement('textarea');ta.value=v;ta.style.cssText='width:100%;height:240px';$('adResult').append(ta);ta.focus();ta.select();try{return document.execCommand('copy')}catch(e){return false}}}
 $('adCopy').onclick=async()=>{if(!last)return;let ok=await copy(format(last));$('adCopyStatus').textContent=ok?'已复制。回到 ChatGPT 粘贴给老师。':'复制失败：长按选中下方出现的报告手动复制。'};
 $('adStart').onclick=start;$('adAgain').onclick=start;
